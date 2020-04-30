@@ -9,7 +9,6 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 public class Echoer extends Thread {
     private Socket socket;
-    //private ArrayBlockingQueue<Pack> Queue;
     private ArrayList<Pack> List;
 
     public Echoer(Socket socket, ArrayList<Pack> List) {
@@ -23,22 +22,22 @@ public class Echoer extends Thread {
             BufferedReader input = new BufferedReader(
                     new InputStreamReader(socket.getInputStream()));
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
-
+            System.out.println("New client");
             while (true) {
                 String echoString = input.readLine();
-                System.out.println("got");
+                System.out.println("notification");
                 String time = input.readLine();
-                System.out.println("got");
+                System.out.println("time");
 
                 if (echoString.equals("exit")) {
                     break;
                 }
 
-                int foo = Integer.parseInt(time);
+                int timeInt = Integer.parseInt(time);
                 Pack P = new Pack();
                 P.output = output;
                 P.message = echoString;
-                P.time = foo;
+                P.time = timeInt;
                 synchronized (List) {
                     List.add(P);
 
@@ -51,7 +50,7 @@ public class Echoer extends Thread {
             try {
                 socket.close();
             } catch (IOException e) {
-
+                e.printStackTrace();
             }
         }
     }

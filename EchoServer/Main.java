@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -20,8 +21,6 @@ public class Main {
                 echoer.start();
 
             }
-
-
         } catch (IOException e) {
             System.out.println("Server exception " + e.getMessage());
         }

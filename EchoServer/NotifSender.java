@@ -12,7 +12,6 @@ public class NotifSender extends Thread {
     @Override
     public void run() {
         while (true) {
-
             synchronized (List) {
                 if (!List.isEmpty()) {
 
@@ -22,15 +21,15 @@ public class NotifSender extends Thread {
                             P.output.println(P.message);
                             List.remove(i);
                         } else {
-                            P.time -= 1000;
+                            P.time -= 50;
                         }
                     }
                 }
             }
             try {
-                sleep(1000);
+                sleep(50);
             } catch (InterruptedException e) {
-
+                System.out.println("Interruption occured");
             }
 
         }
